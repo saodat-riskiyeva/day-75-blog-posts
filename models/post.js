@@ -18,6 +18,20 @@ class Post {
     return posts;
   }
 
+  static async fetch() {
+    if (!this.id) {
+      return;
+    }
+
+    const postDocument = await await db
+      .getDb()
+      .collection("posts")
+      .findOne({ _id: this.id });
+
+    this.title = postDocument.title;
+    this.content = postDocument.content;
+  }
+
   async save() {
     let result;
 

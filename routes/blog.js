@@ -16,7 +16,7 @@ router.get("/admin", async function (req, res) {
     return res.status(401).render("401");
   }
 
-  const posts = await db.getDb().collection("posts").find().toArray();
+  const posts = await Post.fetchAll();
 
   let sessionInputData = req.session.inputData;
 

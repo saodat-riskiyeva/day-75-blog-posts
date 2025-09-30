@@ -38,6 +38,18 @@ class Post {
 
     return result;
   }
+
+  async delete() {
+    if (!this.id) {
+      throw new Error("Post ID is required for deletion.");
+    }
+    const result = await db
+      .getDb()
+      .collection("posts")
+      .deleteOne({ _id: this.id });
+
+    return result;
+  }
 }
 
 module.exports = Post;
